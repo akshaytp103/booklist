@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Book List</h1>
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="Search by title or author" value="{{ request.GET.q }}">
+        <input type="submit" value="Search">
+    </form>
+    <div class="row">
+        {% for book in books %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="{{ book.image.url }}" alt="{{ book.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text font-weight-bold">author: {{ book.author }}</p>
+                        <p class="card-text">About this book: {{ book.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

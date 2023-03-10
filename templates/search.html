@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Book List{% endblock %}
+
+{% block nav_books %}
+    active
+{% endblock %}
+
+{% block content %}
+    <form method="get" class="form-inline mb-3">
+        <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <div class="row">
+        {% for book in books %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
+                <div class="card-body">
+                    <h4 class="card-title">{{ book.title }}</h4>
+                    <h5 class="card-text font-weight-bold">author: {{ book.author }}</h5>
+                    <p class="card-text">About this book: {{ book.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No books found.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
